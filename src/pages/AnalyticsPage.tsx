@@ -5,18 +5,12 @@ import { RootState, useAppDispatch } from "../redux/store";
 import { useEffect } from "react";
 import { fetchAnalyticsData } from "../redux/analyticsSlice";
 import UserRegistrationsChart from "../components/analytics charts/UserRegistrationsChart";
-import UserStatusPieChart from "../components/analytics charts/UserStatusPieChart";
 import UserRegionChart from "../components/analytics charts/UserRegionChart";
 
 const AnalyticsPage = () => {
   const dispatch = useAppDispatch();
 
-  const { analyticsData, isLoading, error } = useSelector(
-    (state: RootState) => state.analytics
-  );
-  const userStatus = useSelector(
-    (state: RootState) => state.filtered.userStatus
-  );
+  const { analyticsData } = useSelector((state: RootState) => state.analytics);
 
   useEffect(() => {
     dispatch(fetchAnalyticsData());

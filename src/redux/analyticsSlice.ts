@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { analyticsData, User } from "../types";
+import { analyticsData } from "../types";
 import { API_BASE_URL } from "../lib/utils";
 
 // Define the shape of the auth state

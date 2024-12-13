@@ -10,9 +10,7 @@ import OverviewCards from "../components/overview/OverviewCards";
 import UserStatusPieChart from "../components/analytics charts/UserStatusPieChart";
 
 const UserManagementPage = () => {
-  const { users, isLoading, error } = useSelector(
-    (state: RootState) => state.users
-  );
+  const { users, error } = useSelector((state: RootState) => state.users);
 
   const [filteredUsers, setFilteredUsers] = useState(users);
   const [selectedRegion, setSelectedRegion] = useState("all");
