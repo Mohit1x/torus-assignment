@@ -35,7 +35,7 @@ const UserManagementPage = () => {
   );
   const activeUsers = userStatus.activeUser;
   const totalUsers = userStatus.totalUsers;
-  const deletedUsers = 2;
+  const deletedUsers = userStatus.deletedUserValue;
 
   const uniqueRegions = useMemo(() => {
     if (users && users?.length) {

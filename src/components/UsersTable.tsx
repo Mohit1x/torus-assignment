@@ -9,6 +9,7 @@ import { MdDelete } from "react-icons/md";
 import { TbListDetails } from "react-icons/tb";
 import {
   setActiveUser,
+  setDeletedUser,
   setInActiveUser,
   setTotalUser,
 } from "../redux/userFilteredValueSlice";
@@ -79,6 +80,7 @@ const UsersTable: React.FC<UserTableProps> = ({ users }) => {
         dispatch(fetchUsersThunk());
         setFilteredUser(users || []);
         toast.success("user deleted!");
+        dispatch(setDeletedUser());
       }, 500);
     }
   };

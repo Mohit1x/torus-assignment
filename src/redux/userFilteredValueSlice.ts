@@ -4,7 +4,7 @@ interface userFilteredValueState {
   userStatus: {
     activeUser: number;
     totalUsers: number;
-    deletedUser: number;
+    deletedUserValue: number;
     inActiveUser: number;
   };
 }
@@ -13,7 +13,7 @@ const initialState: userFilteredValueState = {
   userStatus: {
     activeUser: 0,
     totalUsers: 0,
-    deletedUser: 0,
+    deletedUserValue: 0,
     inActiveUser: 0,
   },
 };
@@ -28,8 +28,8 @@ const userFilteredValueSlice = createSlice({
     setTotalUser: (state, action: PayloadAction<number>) => {
       state.userStatus.totalUsers = action.payload;
     },
-    setDeletedUser: (state, action: PayloadAction<number>) => {
-      state.userStatus.deletedUser = action.payload;
+    setDeletedUser: (state) => {
+      state.userStatus.deletedUserValue += 1;
     },
     setInActiveUser: (state, action: PayloadAction<number>) => {
       state.userStatus.inActiveUser = action.payload;
