@@ -10,17 +10,19 @@ import { toast } from "sonner";
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [errorUser, setErrorUser] = useState("");
 
   const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
-  const { isLoading, isLoggedIn } = useAppSelector((state) => state.auth);
+  const { isLoading, isLoggedIn, error } = useAppSelector(
+    (state) => state.auth
+  );
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (username.trim().length < 5 && password.trim().length < 5) {
-      setError("username or password must be of atleast 5 characters");
+      setErrorUser("username or password must be of atleast 5 characters");
       return;
     }
     dispatch(loginThunk({ username, password }));
@@ -64,7 +66,7 @@ const LoginForm = () => {
               <FaLock />
               <input
                 onFocus={() => {
-                  setError("");
+                  setErrorUser("");
                 }}
                 type="password"
                 className="bg-purple-100 focus:outline-none placeholder:text-black w-full"
@@ -73,13 +75,20 @@ const LoginForm = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </label>
-            {error && (
-              <p className="text-md text-red-600 font-semibold">{error}</p>
+            {error || errorUser ? (
+              <p className="text-md text-red-600 font-semibold">
+                {error ? error : errorUser}
+              </p>
+            ) : (
+              ""
             )}
           </div>
           <button
+            disabled={isLoading}
             type="submit"
-            className="bg-gradient-to-r from-customLight to-customDark py-2 px-4 hover:bg-gradient-to-r hover:from-customDark hover:to-customLight w-fit text-white text-center rounded-md transition-all duration-300 ease-in-out font-semibold"
+            className={`${
+              isLoading && "bg-gray-500"
+            } bg-gradient-to-r from-customLight to-customDark py-2 px-4 hover:bg-gradient-to-r hover:from-customDark hover:to-customLight w-fit text-white text-center rounded-md transition-all duration-300 ease-in-out font-semibold`}
           >
             Login Now
           </button>
